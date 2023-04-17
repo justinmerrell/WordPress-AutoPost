@@ -36,8 +36,9 @@ def get_content_type(file_extension):
         raise ValueError(f"Unsupported file extension: {file_extension}")
 
 
-def create_post(title, content, excerpt, featured_media_id, token=None):
+def create_post(title, content, excerpt, featured_media_id, tags, token=None):
     """Create a new WordPress post with the given content and featured media."""
+
     url = f"{WORDPRESS_SITE_URL}/wp-json/wp/v2/posts"
 
     if token is None:
@@ -53,6 +54,7 @@ def create_post(title, content, excerpt, featured_media_id, token=None):
         'content': content,
         'excerpt': excerpt,
         'featured_media': featured_media_id,
+        'tags': tags.split(","),
         'status': 'publish'
     }
 

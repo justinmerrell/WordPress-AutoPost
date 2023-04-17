@@ -1,12 +1,14 @@
 from blog_components.headline import blog_post_title
 from blog_components.body import generate_content
-from blog_components.meta import get_excerpt
+from blog_components.meta import get_excerpt, get_tags
 from blog_components.media import generate_img_prompts, produce_image
 from wordpress_post import create_post, upload_image_to_wordpress
+from modifiers.modify_body import add_disclaimer
 
 blog_title, title_prompt = blog_post_title()
 blog_body, body_prompt = generate_content(blog_title, title_prompt)
 blog_post_excerpt = get_excerpt(blog_title, blog_body)
+blog_post_tags = get_tags(blog_title, blog_body)
 
 print(f"Blog Title: {blog_title}")
 print(f"Blog Body: {blog_body}")
@@ -21,5 +23,7 @@ print(f"Image URL: {image_url}")
 image_id = upload_image_to_wordpress(image_url)
 print(f"Image ID: {image_id}")
 
+blog_body = add_disclaimer(blog_body)
+
 # Post to WordPress
-create_post(blog_title, blog_body, blog_post_excerpt, image_id)
+create_post(blog_title, blog_body, blog_post_excerpt, image_id, blog_post_tags)
