@@ -13,6 +13,7 @@ blog_post_tags = get_tags(blog_title, blog_body)
 print(f"Blog Title: {blog_title}")
 print(f"Blog Body: {blog_body}")
 print(f"Blog Excerpt: {blog_post_excerpt}")
+print(f"Blog Tags: {blog_post_tags}")
 
 image_prompt = generate_img_prompts(blog_title, blog_body, title_prompt, body_prompt)
 print(f"Image Prompt: {image_prompt}")

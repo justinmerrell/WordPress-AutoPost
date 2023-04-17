@@ -45,7 +45,7 @@ def get_tags(blog_title, blog_body):
 
     :param blog_title: str, the title of the blog post.
     :param blog_body: str, the body of the blog post.
-    :return: str, generated tags for the blog post.
+    :return: list, generated tags for the blog post.
     """
     prompt = f"""
         You are a content writer tasked with creating tags for the following blog post.
@@ -63,9 +63,17 @@ def get_tags(blog_title, blog_body):
         Returning only the tags as a comma separated list.
     """
 
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": prompt}]
-    )
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": prompt}]
+        )
 
-    return response.choices[0].message.content
+        tags_string = response.choices[0].message.content
+        tags_list = [tag.strip() for tag in tags_string.split(',') if tag.strip()]
+
+        return tags_list
+
+    except Exception as e:
+        print(f"Error generating tags: {e}")
+        return []
