@@ -25,6 +25,7 @@ def generate_img_prompts(blog_title, blog_post, title_prompt, body_prompt):
 
         The prompt should result in a beautiful and relevant image when used with an AI image generation model.
         The style should be hyper-realistic and the image should be of high quality.
+        Only return the prompt, no need to provide an introduction or explanation.
 
         Examples of good image prompts include language like:
         - trending on pixiv, detailed, clean lines, sharp lines, crisp lines, award winning illustration, masterpiece, 4k, eugene de blaas and ross tran, vibrant color scheme, intricately detailed
