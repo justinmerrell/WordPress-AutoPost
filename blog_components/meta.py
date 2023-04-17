@@ -60,7 +60,7 @@ def get_tags(blog_title, blog_body):
         - Capture the main theme of the blog post.
         - Be relevant to the topic of the blog post.
 
-        Returning only the tags as a comma separated list.
+        Returning only the tags as a comma separated list, do not include punctuation.
     """
 
     try:

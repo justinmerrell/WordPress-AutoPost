@@ -107,3 +107,65 @@ def upload_image_to_wordpress(image_url, token=None):
     else:
         raise Exception(
             f"Error uploading image. Status code: {response.status_code}\n{response.text}")
+
+
+# ---------------------------------------------------------------------------- #
+#                                     Tags                                     #
+# ---------------------------------------------------------------------------- #
+
+def get_tag_id_by_name(tag_name, token=None):
+    if token is None:
+        token = get_jwt_token()
+
+    url = f"{WORDPRESS_SITE_URL}/wp-json/wp/v2/tags"
+    headers = {
+        'Authorization': f"Bearer {token}"
+    }
+
+    params = {
+        'search': tag_name
+    }
+
+    response = requests.get(url, headers=headers, params=params)
+
+    if response.status_code == 200:
+        tags = response.json()
+        if tags:
+            return tags[0]['id']
+    return None
+
+
+def create_tag(tag_name, token=None):
+    if token is None:
+        token = get_jwt_token()
+
+    url = f"{WORDPRESS_SITE_URL}/wp-json/wp/v2/tags"
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': f"Bearer {token}"
+    }
+
+    tag_data = {
+        'name': tag_name
+    }
+
+    response = requests.post(url, headers=headers, data=json.dumps(tag_data))
+
+    if response.status_code == 201:
+        return response.json()['id']
+    else:
+        raise Exception(f"Error creating tag. Status code: {response.status_code}\n{response.text}")
+
+
+def get_or_create_tags(tag_names, token=None):
+    if token is None:
+        token = get_jwt_token()
+
+    tag_ids = []
+    for tag_name in tag_names:
+        tag_id = get_tag_id_by_name(tag_name, token)
+        if tag_id is None:
+            tag_id = create_tag(tag_name, token)
+        tag_ids.append(tag_id)
+
+    return tag_ids
