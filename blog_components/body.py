@@ -28,7 +28,8 @@ def generate_content(blog_title, blog_title_prompt):
         - Keep the content more general, focusing on providing insights and advice without relying too heavily on personal anecdotes.
         - Provide actionable advice, tips, or insights to help readers in their personal and professional lives.
         - Draw inspiration from a variety of sources, such as the writings of Ran Prieur, Gray Mirror, and Richard Stallman, as well as the personality of George Hotz.
-        - Ensure the content aligns with one or more of the following themes: artificial intelligence, technology trends, entrepreneurship, or personal development.
+        - Try to align the content with a relevant theme: artificial intelligence, technology trends, entrepreneurship, or personal development.
+        - Incorporate a parallel to a paradox
 
         Experiences to draw inspiration from:
         Justin Merrell is a software developer and entrepreneur with diverse experiences, including dropping out of college, founding a successful makerspace, and embracing a minimalistic lifestyle.
