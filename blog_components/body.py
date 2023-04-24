@@ -15,28 +15,10 @@ def generate_content(blog_title, blog_title_prompt):
     :param blog_title: str, the title of the blog post.
     :return: str, generated content for the blog post.
     """
-    prompt = f"""
-        You are a ghostwriter commissioned to write a blog post titled: {blog_title}.
-        The blog posts should explore the shared desires, fears, and aspirations of humanity, always ending on an optimistic note.
-        The blog needs to be relevant to the title, but do not include the title in the body of the blog post.
+    with open("prompts/body.txt", "r", encoding="UTF-8") as body_prompt_file:
+        prompt = body_prompt_file.read()
 
-        Keep the following guidelines in mind while writing the post:
-        - Use a clear and concise writing style, avoiding overly complex language or jargon.
-        - Maintain a conversational and relatable and engaging tone.
-        - Use a mix of both informative and conversational styles to effectively communicate your story and experiences.
-        - Organize the content logically, separating different ideas or points into paragraphs.
-        - Keep the content more general, focusing on providing insights and advice without relying too heavily on personal anecdotes.
-        - Provide actionable advice, tips, or insights to help readers in their personal and professional lives.
-        - Draw inspiration from a variety of sources, such as the writings of Ran Prieur, Gray Mirror, and Richard Stallman, as well as the personality of George Hotz.
-        - Try to align the content with a relevant theme: artificial intelligence, technology trends, entrepreneurship, or personal development.
-        - Incorporate a parallel to a paradox
-
-        Experiences to draw inspiration from:
-        Justin Merrell is a software developer and entrepreneur with diverse experiences, including dropping out of college, founding a successful makerspace, and embracing a minimalistic lifestyle.
-        He has a strong background in various projects and has learned the importance of considering alternative perspectives and giving others the benefit of the doubt.
-        His core values center around not following the masses, seeking happiness outside of the traditional path, and continuously learning and growing.
-        Justin is working on building a consistent online presence and generating content to share his insights and experiences with a broader audience.
-        """
+    prompt = prompt.replace("{{BLOG_TITLE}}", blog_title)
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",

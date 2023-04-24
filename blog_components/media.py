@@ -20,17 +20,8 @@ def generate_img_prompts(blog_title, blog_post, title_prompt, body_prompt):
     :param blog_post: str, the body of the blog post.
     :return: str, generated image prompt.
     """
-    prompt = """
-        Create an image prompt that captures the essence of the blog post title and body.
-
-        The prompt should result in a beautiful and relevant image when used with an AI image generation model.
-        The style should be hyper-realistic and the image should be of high quality.
-        Only return the prompt, no need to provide an introduction or explanation.
-
-        Examples of good image prompts include language like:
-        - trending on pixiv, detailed, clean lines, sharp lines, crisp lines, award winning illustration, masterpiece, 4k, eugene de blaas and ross tran, vibrant color scheme, intricately detailed
-        - cinematic, colorful background, concept art, dramatic lighting, high detail, highly detailed, hyper realistic, intricate, intricate sharp details, octane render, smooth, studio lighting, trending on artstation
-    """
+    with open("prompts/image.txt", "r", encoding="UTF-8") as image_prompt_file:
+        prompt = image_prompt_file.read()
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -53,20 +44,13 @@ def produce_image(image_prompt):
     :param image_prompt: str, the image prompt.
     :return: str, generated image URL.
     """
-    negative_prompt = """
-        Avoid:
-        - un-detailed skin
-        - semi-realistic, cgi, 3d, render, sketch, cartoon, drawing
-        - ugly eyes, worst quality, low quality, jpeg artifacts
-        - white robe, easynegative, bad-hands-5, grainy, low-res
-        - extra limb, poorly drawn hands, missing limb, blurry, malformed hands, blur
-        - nude, naked, porn, gross, ugly, bad, bad quality
-    """
+    with open("prompts/image_negative.txt", "r", encoding="UTF-8") as negative_prompt_file:
+        negative_prompt = negative_prompt_file.read()
 
-    endpoint = runpod.Endpoint("stable-diffusion-v1")
+    endpoint = runpod.Endpoint("kandinsky-v2")
 
     run_request = endpoint.run({"prompt": image_prompt, "negative_prompt": negative_prompt})
 
     run_results = run_request.output()
 
-    return run_results[0]["image"]
+    return run_results["image_url"]

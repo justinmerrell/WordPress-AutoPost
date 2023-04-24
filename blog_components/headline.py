@@ -45,27 +45,13 @@ def get_real_headlines(api_key=NEWSAPI_KEY):
 
 
 def paraphrase_headline(headlines):
-    """Generates a new blog post title based on the provided headlines."""
-    prompt = f"""
-        You are a ghostwriter for a blog that focuses on four pillars:
-        -Artificial intelligence and machine learning
-        -Technology trends and innovations
-        -Entrepreneurship and startup culture
-        -Personal development and self-help
-
-        Using the following headlines as inspiration for a blog post, combine them into a new single blog post title.
-        Headlines: `{headlines}`
-
-        The new title must be coherent and make sense.
-        The new title should select one of the four pillars as the main topic.
-        Do not include an individual's name or a specific location in the headline.
-        Do not write about about family, parenting or religion.
-        Controversial topics are fine, but do not write about anything that could be considered offensive.
-        The title should leave the reader wanting to read the blog post.
-
-        The tile should follow the format: `single word | short catchy phrase`
-        Examples: `Dedication | Being an Entrepreneur`, `Consistency | Easier Said Than Done`, `Books | Lifes Shortcut`, `Meditation | The Key to Happiness`, 'Stress | The Silent Killer'
     """
+    Generates a new blog post title based on the provided headlines.
+    """
+    with open("prompts/headline.txt", "r", encoding="UTF-8") as headline_prompt_file:
+        prompt = headline_prompt_file.read()
+
+    prompt = prompt.replace("{{HEADLINES}}", str(headlines))
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",

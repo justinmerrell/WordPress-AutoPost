@@ -55,6 +55,7 @@ def create_post(title, content, excerpt, featured_media_id, tags, token=None):
         'excerpt': excerpt,
         'featured_media': featured_media_id,
         'tags': tags,
+        'categories': [113],
         'status': 'publish'
     }
 

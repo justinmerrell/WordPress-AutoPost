@@ -35,6 +35,7 @@ This project is an automated blog post generator that creates a blog post title,
 
     NEWSAPI_KEY=your_newsapi_key
     OPENAI_API_KEY=your_openai_api_key
+
     RUNPOD_API_KEY=your_runpod_api_key
     ```
 
