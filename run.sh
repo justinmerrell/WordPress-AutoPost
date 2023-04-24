@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Activate the virtual environment
-source /root/automation/WordPress-AutoPost/env/bin/activate
+source /opt/WordPress-AutoPost/env/bin/activate
 
 # Call the main.py script
-python /root/automation/WordPress-AutoPost/main.py
+cd /opt/WordPress-AutoPost && /opt/WordPress-AutoPost/env/bin/python main.py
 
 # Deactivate the virtual environment
 deactivate
