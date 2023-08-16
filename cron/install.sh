@@ -24,9 +24,9 @@ pip install -r requirements.txt
 # Add or update the cron job
 # If "--live" is passed to the script, include it in the run.sh call
 if [[ $* == *--live* ]]; then
-    (crontab -l 2>/dev/null || true; echo "0 0 12 ? * WED * bash /opt/WordPress-AutoPost/cron/run.sh --live > /opt/WordPress-AutoPost/output.log 2> /opt/WordPress-AutoPost/error.log") | crontab -
+    (crontab -l 2>/dev/null || true; echo "0 0 12 * * WED bash /opt/WordPress-AutoPost/cron/run.sh --live > /opt/WordPress-AutoPost/output.log 2> /opt/WordPress-AutoPost/error.log") | crontab -
 else
-    (crontab -l 2>/dev/null || true; echo "0 0 12 ? * WED * bash /opt/WordPress-AutoPost/cron/run.sh > /opt/WordPress-AutoPost/output.log 2> /opt/WordPress-AutoPost/error.log") | crontab -
+    (crontab -l 2>/dev/null || true; echo "0 0 12 * * WED bash /opt/WordPress-AutoPost/cron/run.sh > /opt/WordPress-AutoPost/output.log 2> /opt/WordPress-AutoPost/error.log") | crontab -
 fi
 
 # Deactivate the virtual environment
