@@ -21,9 +21,6 @@ source /opt/WordPress-AutoPost/env/bin/activate
 # Install requirements.txt
 pip install -r requirements.txt
 
-# Make run.sh executable
-chmod +x run.sh
-
 # Add or update the cron job
 # If "--live" is passed to the script, include it in the run.sh call
 if [[ $* == *--live* ]]; then

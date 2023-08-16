@@ -22,9 +22,9 @@ This project is an automated blog post generator that creates a blog post title,
 1. Clone the repository and install the required libraries:
 
     ```bash
-    git clone https://github.com/yourusername/automated-blog-post-generator.git
-    cd automated-blog-post-generator
-    pip install -r requirements.txt
+    git clone https://github.com/justinmerrell/wordpress-autopost.git /opt/wordpress-autopost
+    cd /opt/wordpress-autopost
+    bash cron/install.sh
     ```
 
 2. Create a .env file in the root directory of the project with the following variables:
