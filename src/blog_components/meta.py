@@ -29,10 +29,11 @@ def get_excerpt(blog_title, blog_body):
         - Be concise and limited to a few sentences.
         - Capture the main theme of the blog post.
         - Entice the reader to click and read the full post.
+        - Use the least amount of words possible.
     """
 
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=[{"role": "user", "content": prompt}]
     )
 
@@ -65,7 +66,7 @@ def get_tags(blog_title, blog_body):
 
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4",
             messages=[{"role": "user", "content": prompt}]
         )
 

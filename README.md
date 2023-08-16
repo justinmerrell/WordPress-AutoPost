@@ -3,6 +3,7 @@
 This project is an automated blog post generator that creates a blog post title, body, and excerpt, generates an image based on the content, and uploads the post to a WordPress site using the WordPress REST API.
 
 ## Project Structure
+
     - blog_components/headline.py: Generates the blog post title.
     - blog_components/body.py: Generates the blog post content.
     - blog_components/meta.py: Generates the blog post excerpt.

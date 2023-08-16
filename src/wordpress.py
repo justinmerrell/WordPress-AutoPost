@@ -115,6 +115,9 @@ def upload_image_to_wordpress(image_url, token=None):
 # ---------------------------------------------------------------------------- #
 
 def get_tag_id_by_name(tag_name, token=None):
+    '''
+    Get the ID of the tag with the given name.
+    '''
     if token is None:
         token = get_jwt_token()
 
@@ -137,6 +140,9 @@ def get_tag_id_by_name(tag_name, token=None):
 
 
 def create_tag(tag_name, token=None):
+    '''
+    Create a new tag with the given name.
+    '''
     if token is None:
         token = get_jwt_token()
 
@@ -159,6 +165,9 @@ def create_tag(tag_name, token=None):
 
 
 def get_or_create_tags(tag_names, token=None):
+    '''
+    Get the IDs of the tags with the given names. If a tag doesn't exist, create it.
+    '''
     if token is None:
         token = get_jwt_token()
 

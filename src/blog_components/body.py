@@ -6,6 +6,7 @@ load_dotenv()
 
 # API Keys
 openai.api_key = os.environ.get("OPENAI_API_KEY")
+MODEL_NAME = "gpt-4"
 
 
 def generate_content(blog_title, blog_title_prompt):
@@ -15,13 +16,13 @@ def generate_content(blog_title, blog_title_prompt):
     :param blog_title: str, the title of the blog post.
     :return: str, generated content for the blog post.
     """
-    with open("prompts/body.txt", "r", encoding="UTF-8") as body_prompt_file:
+    with open("src/prompts/body.txt", "r", encoding="UTF-8") as body_prompt_file:
         prompt = body_prompt_file.read()
 
     prompt = prompt.replace("{{BLOG_TITLE}}", blog_title)
 
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model=MODEL_NAME,
         messages=[
             {"role": "assistant", "content": blog_title_prompt},
             {"role": "system", "content": blog_title},

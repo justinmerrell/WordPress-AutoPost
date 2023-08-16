@@ -20,11 +20,11 @@ def generate_img_prompts(blog_title, blog_post, title_prompt, body_prompt):
     :param blog_post: str, the body of the blog post.
     :return: str, generated image prompt.
     """
-    with open("prompts/image.txt", "r", encoding="UTF-8") as image_prompt_file:
+    with open("src/prompts/image.txt", "r", encoding="UTF-8") as image_prompt_file:
         prompt = image_prompt_file.read()
 
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=[
             {"role": "assistant", "content": title_prompt},
             {"role": "system", "content": blog_title},
@@ -44,7 +44,7 @@ def produce_image(image_prompt):
     :param image_prompt: str, the image prompt.
     :return: str, generated image URL.
     """
-    with open("prompts/image_negative.txt", "r", encoding="UTF-8") as negative_prompt_file:
+    with open("src/prompts/image_negative.txt", "r", encoding="UTF-8") as negative_prompt_file:
         negative_prompt = negative_prompt_file.read()
 
     endpoint = runpod.Endpoint("kandinsky-v2")
